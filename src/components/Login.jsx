@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
 import {validateForm} from "./../utils/validateForm"
+
+
+import signUpUser from '../utils/auth'
 function Login() {
     const [isSignIn,setIssignIn] = useState(true);
     const [errorMsg,setErrorMsg] = useState('');
@@ -20,6 +23,7 @@ function Login() {
         }else{
             const message = validateForm(email.current.value,password.current.value,name.current.value,name.current.value);
             setErrorMsg(message);
+            signUpUser(email.current.value,password.current.value)
         }        
     }
   return (
