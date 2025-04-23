@@ -1,9 +1,26 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Header from './Header'
+import {validateForm} from "./../utils/validateForm"
 function Login() {
     const [isSignIn,setIssignIn] = useState(true);
+    const [errorMsg,setErrorMsg] = useState('');
+    const email = useRef(null);
+    const password = useRef(null);
+    const name = useRef(null);
+    
     const handleSignIn = () =>{
         setIssignIn(!isSignIn);
+    }
+
+    const handleFormSubmit = (e) =>{
+        e.preventDefault();
+        if(isSignIn){
+            const message = validateForm(email.current.value,password.current.value);
+            setErrorMsg(message);
+        }else{
+            const message = validateForm(email.current.value,password.current.value,name.current.value,name.current.value);
+            setErrorMsg(message);
+        }        
     }
   return (
     <div className='h-screen relative'>
@@ -14,22 +31,23 @@ function Login() {
             <h1 className='text-left text-white font-bold mb-8 text-4xl'>{isSignIn?"Sign In":"Sign Up"}</h1>
             <div className='space-y-4'>
                 {!isSignIn && <div>
-                    <input type='text' placeholder='Name' className='w-full bg-zinc-800 border border-zinc-700 text-white
+                    <input type='text' ref={name} placeholder='Name' className='w-full bg-zinc-800 border border-zinc-700 text-white
                     p-4 rounded focus:outline-none focus:border-zinc-500'/>
                 </div>}
                 <div>
-                    <input type="text" name="" id="" placeholder='Email or mobile number'
+                    <input type="text" name="" id="email" placeholder='Email or mobile number' ref={email}
                     className='w-full bg-zinc-800 border border-zinc-700 text-white p-4 rounded focus:outline-none
                     focus:border-zinc-500'/>
                 </div>
                 <div>
-                    <input type="password" name="" id="" placeholder='Password'
+                    <input type="password" name="" id="password" placeholder='Password' ref = {password}
                     className='w-full bg-zinc-800 border border-zinc-700 text-white p-4 focus:outline-none
                     focus:border-zinc-500'/>
                 </div>
                 <div>
+                    <p className='text-red-400 text-lg text-left'>{errorMsg}</p>
                     <button className='w-full bg-red-600 text-white py-3 rounded font-medium hover:bg-red-700 transition-colors'
-                    >{isSignIn?"Sign In":"Sign Up"}</button>
+                    onClick={handleFormSubmit}>{isSignIn?"Sign In":"Sign Up"}</button>
                 </div>
                 <div>
                     <span className='text-zinc-400'>OR</span>
