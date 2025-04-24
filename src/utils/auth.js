@@ -1,4 +1,4 @@
-import {createUserWithEmailAndPassword} from "firebase/auth"
+import {createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth"
 import {auth} from "./../utils/firebase"
 function signUpUser(email, password) {
     createUserWithEmailAndPassword(auth, email, password)
@@ -16,5 +16,23 @@ function signUpUser(email, password) {
         // Display error to user
       });
   }
+
+  export const signInUser = async (email, password) => {
+    try {
+     
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      
+      // Return the signed-in user
+      const user = userCredential.user;
+      console.log("User signed in successfully:", user.uid);
+    
+    } catch (error) {
+      // Handle errors
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error(`Error signing in: ${errorCode} - ${errorMessage}`);
+      throw error;
+    }
+  };
 
   export default signUpUser;
