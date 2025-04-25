@@ -26,7 +26,7 @@ function Login() {
         }else{
             const message = validateForm(email.current.value,password.current.value,name.current.value,name.current.value);
             setErrorMsg(message);
-            signUpUser(email.current.value,password.current.value)
+            signUpUser(email.current.value,password.current.value,name.current.value)
             navigate('/browse');
         }        
     }

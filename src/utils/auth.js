@@ -1,6 +1,6 @@
-import {createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut} from "firebase/auth"
+import {createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut, updateProfile} from "firebase/auth"
 import {auth} from "./../utils/firebase"
-function signUpUser(email, password) {
+function signUpUser(email, password,name) {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signup successful
@@ -11,9 +11,15 @@ function signUpUser(email, password) {
         // Handle errors
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.error("Signup error:", errorCode, errorMessage);
-        
+        console.error("Signup error:", errorCode, errorMessage); 
       });
+      updateProfile(auth.currentUser,{
+        displayName:name
+      }).then(()=>{
+        console.log('User profile updated');        
+      }).catch((err)=>{
+        console.log('error',err);
+      })    
   }
 
   export const signInUser = async (email, password) => {
