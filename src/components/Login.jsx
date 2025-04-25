@@ -2,9 +2,10 @@ import React, { useRef, useState } from 'react'
 import Header from './Header'
 import {validateForm} from "./../utils/validateForm"
 import signUpUser,{signInUser} from '../utils/auth'
-
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
+    const navigate = useNavigate()
     const [isSignIn,setIssignIn] = useState(true);
     const [errorMsg,setErrorMsg] = useState('');
     const email = useRef(null);
@@ -21,10 +22,12 @@ function Login() {
             const message = validateForm(email.current.value,password.current.value);
             setErrorMsg(message);
             signInUser(email.current.value,password.current.value)
+            navigate('/browse');
         }else{
             const message = validateForm(email.current.value,password.current.value,name.current.value,name.current.value);
             setErrorMsg(message);
             signUpUser(email.current.value,password.current.value)
+            navigate('/browse');
         }        
     }
   return (

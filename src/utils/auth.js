@@ -6,14 +6,13 @@ function signUpUser(email, password) {
         // Signup successful
         const user = userCredential.user;
         console.log("User created:", user);
-        // You can redirect or update UI here
       })
       .catch((error) => {
         // Handle errors
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error("Signup error:", errorCode, errorMessage);
-        // Display error to user
+        
       });
   }
 
@@ -25,7 +24,6 @@ function signUpUser(email, password) {
       // Return the signed-in user
       const user = userCredential.user;
       console.log("User signed in successfully:", user.uid);
-    
     } catch (error) {
       // Handle errors
       const errorCode = error.code;
