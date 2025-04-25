@@ -1,4 +1,4 @@
-import {createUserWithEmailAndPassword,signInWithEmailAndPassword} from "firebase/auth"
+import {createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut} from "firebase/auth"
 import {auth} from "./../utils/firebase"
 function signUpUser(email, password) {
     createUserWithEmailAndPassword(auth, email, password)
@@ -32,5 +32,13 @@ function signUpUser(email, password) {
       throw error;
     }
   };
-
+   
+  export const signOutUser =() =>{
+    signOut(auth).then(()=>{
+      console.log('User signedOut successfully');      
+    }).catch((error)=>{
+      console.log('error signing out',error);
+      
+    })
+  }
   export default signUpUser;
