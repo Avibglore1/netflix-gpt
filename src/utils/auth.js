@@ -10,7 +10,7 @@ function signUpUser(email, password,name) {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error("Signup error:", errorCode, errorMessage); 
-        return error
+        return errorMessage
       });
       updateProfile(auth.currentUser,{
         displayName:name
@@ -18,7 +18,6 @@ function signUpUser(email, password,name) {
         console.log('User profile updated');        
       }).catch((err)=>{
         console.log('error',err);
-        return err;
       })    
   }
 
@@ -35,7 +34,7 @@ function signUpUser(email, password,name) {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.error(`Error signing in: ${errorCode} - ${errorMessage}`);
-      return error
+      return error.message
     }
   };
    
