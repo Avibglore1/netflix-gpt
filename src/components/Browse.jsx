@@ -1,15 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Header from './Header'
-import { options } from '../utils/constant'
+import getNowPlayingMovies from './hooks/useNowPlayingMovies'
+
 function Browse() {
-  const getNowPlayingMovie = async() =>{
-    const data = await fetch('https://api.themoviedb.org/3/movie/now_playing?page=1', options);
-    const json = await data.json();
-    console.log('json',json.results);
-  }
-  useEffect(()=>{
-    getNowPlayingMovie();
-  },[])
+  getNowPlayingMovies()
   return (
     <>
       <Header></Header>
