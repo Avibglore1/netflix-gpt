@@ -2,10 +2,8 @@ import React, { useRef, useState } from 'react'
 import Header from './Header'
 import {validateForm} from "./../utils/validateForm"
 import signUpUser,{signInUser} from '../utils/auth'
-import { useNavigate } from 'react-router-dom'
 
 function Login() {
-    const navigate = useNavigate()
     const [isSignIn,setIssignIn] = useState(true);
     const [errorMsg,setErrorMsg] = useState('');
     const email = useRef(null);
@@ -16,19 +14,33 @@ function Login() {
         setIssignIn(!isSignIn);
     }
 
-    const handleFormSubmit = (e) =>{
+    const handleFormSubmit = async(e) =>{
+        setErrorMsg('')
         e.preventDefault();
-        if(isSignIn){
-            const message = validateForm(email.current.value,password.current.value);
-            setErrorMsg(message);
-            signInUser(email.current.value,password.current.value)
-            navigate('/browse');
+        let validationMsg;
+        if (isSignIn){
+            validationMsg = validateForm(email.current.value,password.current.value);
         }else{
-            const message = validateForm(email.current.value,password.current.value,name.current.value,name.current.value);
-            setErrorMsg(message);
-            signUpUser(email.current.value,password.current.value,name.current.value)
-            navigate('/browse');
-        }        
+            validationMsg = validateForm(email.current.value,password.current.value,name.current.value,name.current.value);
+        }
+        if(validationMsg){
+            setErrorMsg(validationMsg);
+            return;
+        }
+        try{
+            let result;
+            if(signInUser){
+                result =await signInUser(email.current.value,password.current.value);
+            }else{
+                result = await signUpUser(email.current.value,password.current.value,name.current.value);
+            }
+           if(typeof result === 'string'){
+            setErrorMsg(result);
+           } 
+        }catch(err){
+            setErrorMsg("An unexpected error occured");
+        }
+                
     }
   return (
     <div className='h-screen relative'>

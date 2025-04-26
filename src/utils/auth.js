@@ -3,15 +3,14 @@ import {auth} from "./../utils/firebase"
 function signUpUser(email, password,name) {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signup successful
         const user = userCredential.user;
         console.log("User created:", user);
       })
       .catch((error) => {
-        // Handle errors
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error("Signup error:", errorCode, errorMessage); 
+        return error
       });
       updateProfile(auth.currentUser,{
         displayName:name
@@ -19,6 +18,7 @@ function signUpUser(email, password,name) {
         console.log('User profile updated');        
       }).catch((err)=>{
         console.log('error',err);
+        return err;
       })    
   }
 
@@ -35,7 +35,7 @@ function signUpUser(email, password,name) {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.error(`Error signing in: ${errorCode} - ${errorMessage}`);
-      throw error;
+      return error
     }
   };
    
