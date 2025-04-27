@@ -7,3 +7,5 @@ export const options = {
       Authorization: `Bearer ${import.meta.env.VITE_TMDB_API}`
     }
   };
+
+  export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w500"
