@@ -4,7 +4,7 @@ function MovieCard({poster_path}) {
     
   return (
     <div>
-        <img className='w-48' src={`${IMAGE_CDN_URL}${poster_path}`} alt="" />
+        <img className='max-w-72' src={`${IMAGE_CDN_URL}${poster_path}`} alt="" />
     </div>
   )
 }

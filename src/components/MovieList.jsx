@@ -1,12 +1,12 @@
 import React from 'react'
 import MovieCard from './MovieCard'
 
-function MovieList({movies}) {
+function MovieList({movies,title}) {
     
   return (
     <div className='p-2'>
-        <h1 className='font-semibold text-3xl p-2'>Now Playing</h1>
-        <div className='flex overflow-hidden'>
+        <h1 className='font-semibold text-3xl p-2'>{title}</h1>
+        <div className='flex overflow-x-scroll '>
         {movies.map(movie=><MovieCard key={movie.id} poster_path={movie?.poster_path}/>)}
         </div>
         

@@ -7,8 +7,8 @@ function SecondaryContainer() {
   
   return (
     <div>
-      {movies && movies.length>0 ? <MovieList  movies={movies}/> : (<div>Loading..</div>)}
-     
+      {movies && movies.length>0 ? <MovieList title={'Now Playing'} movies={movies}/> : (<div>Loading..</div>)}
+      {movies && movies.length>0 ? <MovieList title={'Trending'}  movies={movies}/> : (<div>Loading..</div>)}
     </div>
   )
 }
