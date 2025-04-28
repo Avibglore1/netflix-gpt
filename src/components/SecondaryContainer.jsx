@@ -10,9 +10,9 @@ function SecondaryContainer() {
   return (
     <div>
       {nowPlayingMovies && nowPlayingMovies.length>0 ? <MovieList title={'Now Playing'} movies={nowPlayingMovies}/> : (<div>Loading..</div>)}
-      {popularMovies && popularMovies.length>0 ? <MovieList title={'Popular'}  movies={popularMovies}/> : (<div>Loading..</div>)}
       {topRatedMovies && topRatedMovies.length>0 ? <MovieList title={'Top Rated'}  movies={topRatedMovies}/> : (<div>Loading..</div>)}
       {upcomingMovies && upcomingMovies.length>0 ? <MovieList title={'Upcoming'}  movies={upcomingMovies}/> : (<div>Loading..</div>)}
+      {popularMovies && popularMovies.length>0 ? <MovieList title={'Popular'}  movies={popularMovies}/> : (<div>Loading..</div>)}
     </div>
   )
 }
