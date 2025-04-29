@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import Header from './Header'
 import {validateForm} from "./../utils/validateForm"
 import signUpUser,{signInUser} from '../utils/auth'
+import { LOGIN_PAGE_URL } from '../utils/constant'
 
 function Login() {
     const [isSignIn,setIssignIn] = useState(true);
@@ -45,7 +46,7 @@ function Login() {
   return (
     <div className='h-screen relative'>
         <Header signIn={isSignIn}/>
-        <img src="https://assets.nflxext.com/ffe/siteui/vlv3/69bec183-9cc8-49d4-8fc2-08228d3c91b4/web/IN-en-20250414-TRIFECTA-perspective_c8273fb1-8860-4ff5-bd1c-c2c4b44d5f2a_medium.jpg" alt="" />
+        <img src={LOGIN_PAGE_URL} alt="" />
         <form action="" className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
         bg-opacity-50 bg-zinc-950  px-8 py-2 w-full max-w-md text-center '>
             <h1 className='text-left text-white font-bold mb-8 text-4xl'>{isSignIn?"Sign In":"Sign Up"}</h1>
