@@ -31,8 +31,13 @@ function Header({signIn}) {
     <div className='flex justify-between'>
         <img src= {LOGO_URL}
         alt="logo" className='w-32'/>
-        {!signIn && <button className='mr-6 mt-2 p-2 border border-r-4 rounded-xl shadow-md text-white font-semibold bg-red-500'
-        onClick={handleSignOut}>Sign Out</button>}
+        <div className='flex justify-end gap-3'>
+          {!signIn && <button className='p-2 border border-r-4 rounded-xl shadow-md text-white font-semibold bg-gray-600'
+          >GPT Search </button>}
+          {!signIn && <button className='mr-6  p-2 border border-r-4 rounded-xl shadow-md text-white font-semibold bg-red-500'
+          onClick={handleSignOut}>Sign Out</button>}
+        </div>
+        
         
     </div>
   )
